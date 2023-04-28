@@ -2,14 +2,13 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using System.Reflection;
 using System;
+using System.Reflection;
 
 namespace Standard.Reflection.Brokers.Properties
 {
-    internal class PropertyInfoBroker : IPropertyInfoBroker
+    internal interface IPropertyBroker
     {
-        public PropertyInfo[] GetProperties(Type type) =>
-           type.GetProperties();
+        PropertyInfo[] GetProperties(Type type);
     }
 }

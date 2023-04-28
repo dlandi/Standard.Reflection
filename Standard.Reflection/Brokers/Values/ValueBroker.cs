@@ -2,9 +2,9 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-namespace Standard.Reflection
+namespace Standard.Reflection.Brokers.Values
 {
-    public class DeleteMe
+    internal class ValueBroker : IValueBroker
     {
     }
 }
