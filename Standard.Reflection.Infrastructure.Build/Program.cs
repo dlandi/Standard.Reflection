@@ -17,7 +17,7 @@ namespace Standard.Reflection.Infrastructure.Build
         {
             var adoNetClient = new ADotNetClient();
 
-            var githubPipeline = new GithubPipeline
+            var gitHubPipeline = new GithubPipeline
             {
                 Name = "Standard.Reflection Build",
 
@@ -76,17 +76,17 @@ namespace Standard.Reflection.Infrastructure.Build
                 }
             };
 
-            string gitubDirectoryPath = "../../../../.github";
-            string directoryPath = gitubDirectoryPath + "/workflows";
+            string gitHubDirectoryPath = "../../../../.github";
+            string directoryPath = gitHubDirectoryPath + "/workflows";
             string filename = "dotnet.yml";
             string fullPath = Path.Combine(directoryPath, filename);
 
-            DirectoryInfo directory = Directory.CreateDirectory(gitubDirectoryPath);
+            DirectoryInfo directory = Directory.CreateDirectory(gitHubDirectoryPath);
             directory.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             Directory.CreateDirectory(directoryPath);
 
             adoNetClient.SerializeAndWriteToFile(
-                adoPipeline: githubPipeline,
+                adoPipeline: gitHubPipeline,
                 path: fullPath);
         }
     }
