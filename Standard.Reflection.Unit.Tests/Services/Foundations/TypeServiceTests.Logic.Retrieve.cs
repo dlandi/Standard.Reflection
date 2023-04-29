@@ -27,7 +27,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations
             Type actualType = this.typeService.RetrieveType(inputObject);
 
             // then
-            actualType.Should().BeSameAs(expectedType);
+            actualType.Should().Be(expectedType);
 
             this.typeBrokerMock.Verify(broker =>
                 broker.GetType(inputObject),

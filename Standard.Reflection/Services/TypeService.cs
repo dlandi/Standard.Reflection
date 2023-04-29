@@ -15,6 +15,6 @@ namespace Standard.Reflection.Services
             this.typeBroker = typeBroker;
 
         public Type RetrieveType(object @object) =>
-            throw new NotImplementedException();
+            this.typeBroker.GetType(@object);
     }
 }
