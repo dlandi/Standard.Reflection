@@ -8,7 +8,7 @@ using Standard.Reflection.Brokers.Properties;
 
 namespace Standard.Reflection.Services.Foundations.Properties
 {
-    internal class PropertyService : IPropertyService
+    internal partial class PropertyService : IPropertyService
     {
         private readonly IPropertyBroker propertyBroker;
 
@@ -16,6 +16,9 @@ namespace Standard.Reflection.Services.Foundations.Properties
             this.propertyBroker = propertyBroker;
 
         public PropertyInfo[] RetrieveProperties(Type type) =>
-            this.propertyBroker.GetProperties(type);
+        TryCatch(() =>
+        {
+            return this.propertyBroker.GetProperties(type);
+        });
     }
 }
