@@ -35,6 +35,6 @@ namespace Standard.Reflection.Services.Foundations.Forms
         public MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
             Stream stream, string name, string fileName) =>
-            throw new System.NotImplementedException();
+            this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, stream, name, fileName);
     }
 }
