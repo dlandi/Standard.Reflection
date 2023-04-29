@@ -17,6 +17,15 @@ namespace Standard.Reflection.Services.Foundations.Attributes
 
         public TAttribute RetrieveAttribute<TAttribute>(PropertyInfo propertyInfo)
             where TAttribute : Attribute =>
-            this.attributeBroker.GetPropertyCustomAttribute<TAttribute>(propertyInfo, inspectAncestors: true);
+        TryCatch(() =>
+        {
+            Validate(propertyInfo);
+
+            TAttribute attribute = this.attributeBroker.GetPropertyCustomAttribute<TAttribute>(
+                propertyInfo,
+                inspectAncestors: true);
+
+            return attribute;
+        });
     }
 }

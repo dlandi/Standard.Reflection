@@ -15,6 +15,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
         public void ShouldRetrieveAttribute()
         {
             // given
+            PropertyInfo somePropertyInfo = CreateSomePropertyInfo();
             TestAttribute someAttribute = new TestAttribute();
             TestAttribute expectedSomeAttribute = someAttribute;
 
@@ -24,7 +25,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
 
             // when
             TestAttribute actualSomeAttribute =
-                this.attributeService.RetrieveAttribute<TestAttribute>(It.IsAny<PropertyInfo>());
+                this.attributeService.RetrieveAttribute<TestAttribute>(somePropertyInfo);
 
             // then
             actualSomeAttribute.Should().BeSameAs(expectedSomeAttribute);

@@ -17,7 +17,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
         public void ShouldThrowValidationExceptionOnRetrieveIfPropertyInfoIsNull()
         {
             // given
-            PropertyInfo nullPropertyInfo = null;
+            PropertyInfo nullPropertyInfo = CreateNullPropertyInfo();
 
             var argumentNullException = new ArgumentNullException();
 
@@ -26,10 +26,6 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
 
             var expectedAttributeValidationException =
                 new AttributeValidationException(nullPropertyInfoException);
-
-            this.attributeBrokerMock.Setup(broker =>
-                broker.GetPropertyCustomAttribute<TestAttribute>(It.IsAny<PropertyInfo>(), It.IsAny<bool>()))
-                    .Throws(argumentNullException);
 
             // when
             Action retrieveAttributeAction =
@@ -43,7 +39,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
 
             this.attributeBrokerMock.Verify(broker =>
                 broker.GetPropertyCustomAttribute<TestAttribute>(It.IsAny<PropertyInfo>(), It.IsAny<bool>()),
-                    Times.Once());
+                    Times.Never());
 
             this.attributeBrokerMock.VerifyNoOtherCalls();
         }
