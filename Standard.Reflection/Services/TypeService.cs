@@ -14,7 +14,11 @@ namespace Standard.Reflection.Services
         public TypeService(ITypeBroker typeBroker) =>
             this.typeBroker = typeBroker;
 
-        public Type RetrieveType(object @object) =>
-            this.typeBroker.GetType(@object);
+        public Type RetrieveType(object @object)
+        {
+            Type type = this.typeBroker.GetType(@object);
+
+            return type;
+        }
     }
 }

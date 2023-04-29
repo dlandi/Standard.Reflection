@@ -24,6 +24,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations
 
         public static IEnumerable<object[]> TestData()
         {
+            yield return new object[] { null };
             yield return new object[] { typeof(DateTime) };
             yield return new object[] { typeof(int) };
             yield return new object[] { typeof(long) };
@@ -34,9 +35,6 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations
         }
 
         public class TestClass
-        {
-        }
+        { }
     }
-
 }
-
