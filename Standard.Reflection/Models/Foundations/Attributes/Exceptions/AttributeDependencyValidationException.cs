@@ -2,14 +2,15 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using System;
 using Xeptions;
 
 namespace Standard.Reflection.Models.Foundations.Attributes.Exceptions
 {
-    public class AttributeValidationException : Xeption
+    public class AttributeDependencyValidationException : Xeption
     {
-        public AttributeValidationException(Xeption innerException)
-            : base(message: "Attribute validation error occurred, fix errors and try again.", innerException)
+        public AttributeDependencyValidationException(Exception innerException)
+            : base(message: "Attribute dependency validation error occurred, fix errors and try again.", innerException)
         { }
     }
 }

@@ -3,11 +3,13 @@
 // ----------------------------------------------------------------------------------
 
 using System;
+using System.IO;
 using System.Reflection;
 using Moq;
 using Standard.Reflection.Brokers.Attributes;
 using Standard.Reflection.Services.Foundations.Attributes;
 using Tynamix.ObjectFiller;
+using Xunit;
 
 namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
 {
@@ -28,6 +30,16 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
             typeof(string).GetProperty(name: "Length");
 
         private static PropertyInfo CreateNullPropertyInfo() => null;
+
+        public static TheoryData GetCustomAttributeExceptions()
+        {
+            return new TheoryData<Exception>()
+            {
+                new NotSupportedException(),
+                new AmbiguousMatchException(),
+                new TypeLoadException()
+            };
+        }
 
     }
 

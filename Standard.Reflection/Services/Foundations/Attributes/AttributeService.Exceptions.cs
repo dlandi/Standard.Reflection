@@ -3,7 +3,6 @@
 // ----------------------------------------------------------------------------------
 
 using System;
-using System.Reflection;
 using Standard.Reflection.Models.Foundations.Attributes.Exceptions;
 
 namespace Standard.Reflection.Services.Foundations.Attributes
@@ -20,7 +19,7 @@ namespace Standard.Reflection.Services.Foundations.Attributes
             {
                 return returningAttributeFunction();
             }
-            catch(ArgumentNullException argumentNullException)
+            catch (ArgumentNullException argumentNullException)
             {
                 var nullPropertyInfoException =
                     new NullPropertyInfoException(argumentNullException);
