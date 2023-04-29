@@ -16,6 +16,6 @@ namespace Standard.Reflection.Services.Foundations.Properties
             this.propertyBroker = propertyBroker;
 
         public PropertyInfo[] RetrieveProperties(Type type) =>
-            throw new NotImplementedException();
+            this.propertyBroker.GetProperties(type);
     }
 }
