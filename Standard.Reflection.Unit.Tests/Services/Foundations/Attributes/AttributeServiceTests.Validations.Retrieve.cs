@@ -1,0 +1,51 @@
+﻿// ----------------------------------------------------------------------------------
+// Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
+// ----------------------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+using FluentAssertions;
+using Moq;
+using Standard.Reflection.Models.Foundations.Attributes.Exceptions;
+using Xunit;
+
+namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
+{
+    public partial class AttributeServiceTests
+    {
+        [Fact]
+        public void ShouldThrowValidationExceptionOnRetrieveIfPropertyInfoIsNull()
+        {
+            // given
+            PropertyInfo nullPropertyInfo = null;
+
+            var argumentNullException = new ArgumentNullException();
+
+            var nullPropertyInfoException =
+                new NullPropertyInfoException(argumentNullException);
+
+            var expectedAttributeValidationException =
+                new AttributeValidationException(nullPropertyInfoException);
+
+            this.attributeBrokerMock.Setup(broker =>
+                broker.GetPropertyCustomAttribute<TestAttribute>(It.IsAny<PropertyInfo>(), It.IsAny<bool>()))
+                    .Throws(argumentNullException);
+
+            // when
+            Action retrieveAttributeAction =
+                () => this.attributeService.RetrieveAttribute<TestAttribute>(nullPropertyInfo);
+
+            var actualAttributeValidationException =
+                  Assert.Throws<AttributeValidationException>(retrieveAttributeAction);
+
+            // then
+            actualAttributeValidationException.Should().BeEquivalentTo(expectedAttributeValidationException);
+
+            this.attributeBrokerMock.Verify(broker =>
+                broker.GetPropertyCustomAttribute<TestAttribute>(It.IsAny<PropertyInfo>(), It.IsAny<bool>()),
+                    Times.Once());
+
+            this.attributeBrokerMock.VerifyNoOtherCalls();
+        }
+    }
+}

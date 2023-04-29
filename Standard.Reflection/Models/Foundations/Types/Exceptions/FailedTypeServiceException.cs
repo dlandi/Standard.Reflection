@@ -10,7 +10,8 @@ namespace Standard.Reflection.Models.Foundations.Types.Exceptions
     public class FailedTypeServiceException : Xeption
     {
         public FailedTypeServiceException(Exception innerException)
-            : base(message: "Failed Type Service Exception occurred, please contact support for assistance.", innerException)
+            : base(message: "Failed Type Service Exception occurred, please contact support for assistance.",
+                  innerException)
         { }
     }
 }

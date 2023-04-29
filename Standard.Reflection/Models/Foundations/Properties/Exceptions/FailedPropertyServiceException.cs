@@ -10,7 +10,8 @@ namespace Standard.Reflection.Models.Foundations.Properties.Exceptions
     public class FailedPropertyServiceException : Xeption
     {
         public FailedPropertyServiceException(Exception innerException)
-        : base(message: "Failed Property Service Exception occurred, please contact support for assistance.", innerException)
+        : base(message: "Failed Property Service Exception occurred, please contact support for assistance.",
+              innerException)
         { }
     }
 }

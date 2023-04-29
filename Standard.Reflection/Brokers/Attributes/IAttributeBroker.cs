@@ -9,7 +9,9 @@ namespace Standard.Reflection.Brokers.Attributes
 {
     internal interface IAttributeBroker
     {
-        TAttribute GetPropertyCustomAttribute<TAttribute>(PropertyInfo propertyInfo, bool inspectAncestors)
+        TAttribute GetPropertyCustomAttribute<TAttribute>(
+            PropertyInfo propertyInfo,
+            bool inspectAncestors)
             where TAttribute : Attribute;
     }
 }

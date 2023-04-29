@@ -8,7 +8,7 @@ using Standard.Reflection.Brokers.Attributes;
 
 namespace Standard.Reflection.Services.Foundations.Attributes
 {
-    internal class AttributeService : IAttributeService
+    internal partial class AttributeService : IAttributeService
     {
         private readonly IAttributeBroker attributeBroker;
 
@@ -17,6 +17,6 @@ namespace Standard.Reflection.Services.Foundations.Attributes
 
         public TAttribute RetrieveAttribute<TAttribute>(PropertyInfo propertyInfo)
             where TAttribute : Attribute =>
-            this.attributeBroker.GetPropertyCustomAttribute<TAttribute>(propertyInfo, true);
+            this.attributeBroker.GetPropertyCustomAttribute<TAttribute>(propertyInfo, inspectAncestors: true);
     }
 }

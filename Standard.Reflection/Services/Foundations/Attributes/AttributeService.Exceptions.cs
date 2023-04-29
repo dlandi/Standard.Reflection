@@ -2,9 +2,9 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
+namespace Standard.Reflection.Services.Foundations.Attributes
 {
-    internal class Fact
+    internal partial class AttributeService : IAttributeService
     {
     }
 }
