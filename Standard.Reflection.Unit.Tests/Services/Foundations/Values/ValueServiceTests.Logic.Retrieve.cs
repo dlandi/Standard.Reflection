@@ -15,8 +15,8 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Values
         public void ShouldRetrievePropertyValue()
         {
             // given
-            object someObject = new object();
-            object someValue = new object();
+            object someObject = CreateSomeObject();
+            object someValue = CreateSomeObject();
             object expectedValue = someValue;
             PropertyInfo somePropertyInfo = CreateSomePropertyInfo();
 

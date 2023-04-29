@@ -20,12 +20,13 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Values
             this.valueBrokerMock = new Mock<IValueBroker>();
             this.valueService = new ValueService(this.valueBrokerMock.Object);
         }
-
-        private static string CreateRandomString() =>
-            new MnemonicString().GetValue();
+        private static object CreateSomeObject() => new object();
 
         private static PropertyInfo CreateSomePropertyInfo() =>
             typeof(string).GetProperty(name: "Length");
+
+        private static string CreateRandomString() =>
+            new MnemonicString().GetValue();
 
         private static PropertyInfo CreateNullPropertyInfo() => null;
     }
