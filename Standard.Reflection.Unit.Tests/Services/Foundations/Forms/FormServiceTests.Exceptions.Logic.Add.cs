@@ -2,6 +2,7 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using System.IO;
 using System.Net.Http;
 using FluentAssertions;
 using Moq;
@@ -62,6 +63,34 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 
             this.multipartFormDataContentBroker.Verify(broker =>
                 broker.AddStringContent(multipartFormDataContent, someContent, randomName),
+                    Times.Once);
+
+            this.multipartFormDataContentBroker.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public void ShouldAddStreamContentWithNoFileName()
+        {
+            // given
+            var multipartFormDataContent = new MultipartFormDataContent();
+            var expectedMultipartFormDataContent = new MultipartFormDataContent();
+            Stream someContent = CreateSomeStreamContent();
+            string randomName = CreateRandomString();
+
+            this.multipartFormDataContentBroker.Setup(broker =>
+                broker.AddStreamContent(multipartFormDataContent, someContent, randomName))
+                    .Returns(expectedMultipartFormDataContent);
+
+            // when
+            var actualMultipartFormDataContent =
+                formService.AddStreamContent(multipartFormDataContent, someContent, randomName);
+
+            // then
+            actualMultipartFormDataContent.Should()
+                .BeSameAs(expectedMultipartFormDataContent);
+
+            this.multipartFormDataContentBroker.Verify(broker =>
+                broker.AddStreamContent(multipartFormDataContent, someContent, randomName),
                     Times.Once);
 
             this.multipartFormDataContentBroker.VerifyNoOtherCalls();

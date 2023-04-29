@@ -2,6 +2,7 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using System.IO;
 using System.Text;
 using Moq;
 using Standard.Reflection.Brokers.MultipartFormDataContents;
@@ -26,5 +27,8 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 
         private static string CreateRandomString() =>
             new MnemonicString().GetValue();
+
+        private static MemoryStream CreateSomeStreamContent() =>
+            new MemoryStream();
     }
 }
