@@ -7,10 +7,10 @@ using Xeptions;
 
 namespace Standard.Reflection.Models.Foundations.Properties.Exceptions
 {
-    public class FailedPropertyServiceException : Xeption
+    public class FailedAttributeServiceException : Xeption
     {
-        public FailedPropertyServiceException(Exception innerException)
-        : base(message: "Failed Property Service Exception occurred, please contact support for assistance.",
+        public FailedAttributeServiceException(Exception innerException)
+        : base(message: "Failed Attribute Service Exception occurred, please contact support for assistance.",
               innerException)
         { }
     }
