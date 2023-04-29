@@ -62,6 +62,16 @@ namespace Standard.Reflection.Services.Foundations.Attributes
 
                 throw attributeDependencyValidationException;
             }
+            catch (Exception exception)
+            {
+                var failedAttributeServiceException =
+                    new FailedAttributeServiceException(exception);
+
+                var attributeServiceException =
+                    new AttributeServiceException(failedAttributeServiceException);
+
+                throw attributeServiceException;
+            }
         }
     }
 }

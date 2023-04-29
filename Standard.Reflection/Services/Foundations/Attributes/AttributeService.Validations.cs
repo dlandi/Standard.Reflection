@@ -2,16 +2,16 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using System.Reflection;
 using System;
+using System.Reflection;
 
 namespace Standard.Reflection.Services.Foundations.Attributes
 {
     internal partial class AttributeService : IAttributeService
     {
-        private void Validate(PropertyInfo propertyInfo)
+        private static void Validate(PropertyInfo propertyInfo)
         {
-            if(propertyInfo == null)
+            if (propertyInfo is null)
             {
                 throw new ArgumentNullException(nameof(propertyInfo));
             }
