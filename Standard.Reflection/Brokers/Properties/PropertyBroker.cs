@@ -2,8 +2,8 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using System.Reflection;
 using System;
+using System.Reflection;
 
 namespace Standard.Reflection.Brokers.Properties
 {

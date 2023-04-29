@@ -7,18 +7,19 @@ using Standard.Reflection.Brokers.Types;
 
 namespace Standard.Reflection.Services
 {
-    internal class TypeService : ITypeService
+    internal partial class TypeService : ITypeService
     {
         private readonly ITypeBroker typeBroker;
 
         public TypeService(ITypeBroker typeBroker) =>
             this.typeBroker = typeBroker;
 
-        public Type RetrieveType(object @object)
+        public Type RetrieveType(object @object) =>
+        TryCatch(() =>
         {
             Type type = this.typeBroker.GetType(@object);
 
             return type;
-        }
+        });
     }
 }
