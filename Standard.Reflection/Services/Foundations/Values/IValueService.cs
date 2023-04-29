@@ -4,11 +4,10 @@
 
 using System.Reflection;
 
-namespace Standard.Reflection.Brokers.Values
+namespace Standard.Reflection.Services.Foundations.Values
 {
-    internal class ValueBroker : IValueBroker
+    internal interface IValueService
     {
-        public object GetPropertyValue(object @object, PropertyInfo propertyInfo) =>
-            propertyInfo.GetValue(@object);
+        object RetrievePropertyValue(object @object, PropertyInfo propertyInfo);
     }
 }

@@ -2,13 +2,13 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using System;
+using System.Reflection;
+using FluentAssertions;
 using Moq;
 using Standard.Reflection.Models.Foundations.Attributes.Exceptions;
-using System.Reflection;
-using System;
-using Xunit;
-using FluentAssertions;
 using Standard.Reflection.Models.Foundations.Properties.Exceptions;
+using Xunit;
 
 namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
 {
