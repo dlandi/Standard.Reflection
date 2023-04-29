@@ -16,6 +16,7 @@ namespace Standard.Reflection.Services.Foundations.Attributes
             this.attributeBroker = attributeBroker;
 
         public TAttribute RetrieveAttribute<TAttribute>(PropertyInfo propertyInfo)
-            where TAttribute : Attribute => throw new NotImplementedException();
+            where TAttribute : Attribute =>
+            this.attributeBroker.GetPropertyCustomAttribute<TAttribute>(propertyInfo, true);
     }
 }

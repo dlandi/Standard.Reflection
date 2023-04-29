@@ -11,27 +11,26 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
 {
     public partial class AttributeServiceTests
     {
-
         [Fact]
         public void ShouldRetrieveAttribute()
         {
             // given
-            SomeAttribute someAttribute = new SomeAttribute();
-            SomeAttribute expectedSomeAttribute = someAttribute;
+            TestAttribute someAttribute = new TestAttribute();
+            TestAttribute expectedSomeAttribute = someAttribute;
 
             this.attributeBrokerMock.Setup(broker =>
-                broker.GetPropertyCustomAttribute<SomeAttribute>(It.IsAny<PropertyInfo>(), It.IsAny<bool>()))
+                broker.GetPropertyCustomAttribute<TestAttribute>(It.IsAny<PropertyInfo>(), It.IsAny<bool>()))
                     .Returns(someAttribute);
 
             // when
-            SomeAttribute actualSomeAttribute =
-                this.attributeService.RetrieveAttribute<SomeAttribute>(It.IsAny<PropertyInfo>());
+            TestAttribute actualSomeAttribute =
+                this.attributeService.RetrieveAttribute<TestAttribute>(It.IsAny<PropertyInfo>());
 
             // then
             actualSomeAttribute.Should().BeSameAs(expectedSomeAttribute);
 
             this.attributeBrokerMock.Verify(broker =>
-                broker.GetPropertyCustomAttribute<SomeAttribute>(It.IsAny<PropertyInfo>(), It.IsAny<bool>()),
+                broker.GetPropertyCustomAttribute<TestAttribute>(It.IsAny<PropertyInfo>(), It.IsAny<bool>()),
                     Times.Once());
 
             this.attributeBrokerMock.VerifyNoOtherCalls();

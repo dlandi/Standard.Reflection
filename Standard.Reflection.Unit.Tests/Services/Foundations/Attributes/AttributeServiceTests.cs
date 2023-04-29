@@ -21,6 +21,6 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
         }
     }
 
-    internal class SomeAttribute : Attribute
+    internal class TestAttribute : Attribute
     { }
 }
