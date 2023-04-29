@@ -15,6 +15,9 @@ namespace Standard.Reflection.Services.Foundations.Values
             this.valueBroker = valueBroker;
 
         public object RetrievePropertyValue(object @object, PropertyInfo propertyInfo) =>
-            this.valueBroker.GetPropertyValue(@object,propertyInfo);
+        TryCatch(() =>
+        {
+            return this.valueBroker.GetPropertyValue(@object, propertyInfo);
+        });
     }
 }

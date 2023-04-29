@@ -16,8 +16,4 @@
 		<InternalsVisibleTo Include="Standard.Reflection.Unit.Tests" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Models\Foundations\Values\Exceptions\" />
-	</ItemGroup>
-
 </Project>

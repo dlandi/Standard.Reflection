@@ -2,15 +2,14 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using System;
 using Xeptions;
 
-namespace Standard.Reflection.Models.Foundations.Attributes.Exceptions
+namespace Standard.Reflection.Models.Foundations.Values.Exceptions
 {
-    public class NullPropertyInfoException : Xeption
+    public class ValueServiceException : Xeption
     {
-        public NullPropertyInfoException(Exception innerException)
-            : base(message: "PropertyInfo is null, fix errors and try again.", innerException)
+        public ValueServiceException(Xeption innerException)
+            : base(message: "Type service error occurred, contact support.", innerException)
         { }
     }
 }
