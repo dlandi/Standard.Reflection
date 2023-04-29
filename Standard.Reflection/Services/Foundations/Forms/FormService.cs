@@ -24,7 +24,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
             MultipartFormDataContent multipartFormDataContent,
             string content,
             string name) =>
-            throw new System.NotImplementedException();
+            this.multipartFormDataContentBroker.AddStringContent(multipartFormDataContent, content, name);
 
         public MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
