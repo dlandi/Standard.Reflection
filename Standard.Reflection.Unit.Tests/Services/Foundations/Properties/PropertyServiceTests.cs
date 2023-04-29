@@ -4,6 +4,7 @@
 
 using System;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Reflection;
 using Moq;
 using Standard.Reflection.Brokers.Properties;
@@ -33,7 +34,11 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Properties
             return properties;
         }
 
-        private static int GetRandomNumber() =>
-            Random.Shared.Next(minValue: 3, maxValue: 8);
+        private static int GetRandomNumber()
+        {
+
+            var random = new Random();
+            return random.Next(minValue: 3, maxValue: 8);
+        }
     }
 }
