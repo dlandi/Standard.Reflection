@@ -5,9 +5,9 @@ VisualStudioVersion = 17.6.33620.401
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standard.Reflection", "Standard.Reflection\Standard.Reflection.csproj", "{C9FA0D2D-E131-4448-A31B-445FBB1D7F47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Reflection.Infrastructure.Build", "Standard.Reflection.Infrastructure.Build\Standard.Reflection.Infrastructure.Build.csproj", "{C34DD36A-ACD2-4D7C-A3D2-31DD5E1D3DA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standard.Reflection.Infrastructure.Build", "Standard.Reflection.Infrastructure.Build\Standard.Reflection.Infrastructure.Build.csproj", "{C34DD36A-ACD2-4D7C-A3D2-31DD5E1D3DA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Reflection.Unit.Tests", "Standard.Reflection.Unit.Tests\Standard.Reflection.Unit.Tests.csproj", "{A39E1D47-61ED-423B-B4A1-C766BB2FC325}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standard.Reflection.Unit.Tests", "Standard.Reflection.Unit.Tests\Standard.Reflection.Unit.Tests.csproj", "{A39E1D47-61ED-423B-B4A1-C766BB2FC325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
