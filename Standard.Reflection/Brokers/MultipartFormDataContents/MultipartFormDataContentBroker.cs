@@ -5,10 +5,20 @@
 using System.IO;
 using System.Net.Http;
 
-namespace Standard.Reflection.Brokers.FormContents
+namespace Standard.Reflection.Brokers.MultipartFormDataContents
 {
     internal class MultipartFormDataContentBroker : IMultipartFormDataContentBroker
     {
+        public MultipartFormDataContent AddByteContent(
+            MultipartFormDataContent multipartFormDataContent,
+            byte[] content,
+            string name)
+        {
+            var byteContent = new ByteArrayContent(content);
+            multipartFormDataContent.Add(byteContent);
+
+            return multipartFormDataContent;
+        }
         public MultipartFormDataContent AddStringContent(
             MultipartFormDataContent multipartFormDataContent,
             string content,
