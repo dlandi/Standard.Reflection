@@ -9,7 +9,7 @@ namespace Standard.Reflection.Models.Foundations.Values.Exceptions
     public class ValueServiceException : Xeption
     {
         public ValueServiceException(Xeption innerException)
-            : base(message: "Type service error occurred, contact support.", innerException)
+            : base(message: "Value service error occurred, contact support.", innerException)
         { }
     }
 }
