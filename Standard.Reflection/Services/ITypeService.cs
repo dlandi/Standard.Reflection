@@ -3,13 +3,11 @@
 // ----------------------------------------------------------------------------------
 
 using System;
-using System.Reflection;
 
-namespace Standard.Reflection.Brokers.Properties
+namespace Standard.Reflection.Services
 {
-    internal class PropertyBroker : IPropertyBroker
+    internal interface ITypeService
     {
-        public PropertyInfo[] GetProperties(Type type) =>
-           type.GetProperties();
+        Type RetrieveType(object @object);
     }
 }
