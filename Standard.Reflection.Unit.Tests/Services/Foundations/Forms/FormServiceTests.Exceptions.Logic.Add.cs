@@ -5,7 +5,6 @@
 using System.Net.Http;
 using FluentAssertions;
 using Moq;
-using Standard.Reflection.Brokers.MultipartFormDataContents;
 using Xunit;
 
 namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
@@ -17,23 +16,24 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
         {
             // given
             var multipartFormDataContent = new MultipartFormDataContent();
-            var content = new byte[] { 1, 2, 3 };
-            string name = "test";
             var expectedMultipartFormDataContent = new MultipartFormDataContent();
+            byte[] someContent = CreateSomeByteArrayContent();
+            string randomName = CreateRandomString();
 
             this.multipartFormDataContentBroker.Setup(broker =>
-                broker.AddByteContent(multipartFormDataContent, content, name))
+                broker.AddByteContent(multipartFormDataContent, someContent, randomName))
                     .Returns(expectedMultipartFormDataContent);
 
             // when
-            var actualMultipartFormDataContent = formService.AddByteContent(multipartFormDataContent, content, name);
+            var actualMultipartFormDataContent =
+                formService.AddByteContent(multipartFormDataContent, someContent, randomName);
 
             // then
             actualMultipartFormDataContent.Should()
                 .BeSameAs(expectedMultipartFormDataContent);
 
-            this.multipartFormDataContentBroker.Verify(broker => 
-                broker.AddByteContent(multipartFormDataContent, content, name),
+            this.multipartFormDataContentBroker.Verify(broker =>
+                broker.AddByteContent(multipartFormDataContent, someContent, randomName),
                     Times.Once);
 
             this.multipartFormDataContentBroker.VerifyNoOtherCalls();

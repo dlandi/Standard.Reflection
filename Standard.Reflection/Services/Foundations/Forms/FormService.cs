@@ -18,7 +18,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
         public MultipartFormDataContent AddByteContent(
             MultipartFormDataContent multipartFormDataContent,
             byte[] content, string name) =>
-            throw new System.NotImplementedException();
+            this.multipartFormDataContentBroker.AddByteContent(multipartFormDataContent, content, name);
 
         public MultipartFormDataContent AddStringContent(
             MultipartFormDataContent multipartFormDataContent,
