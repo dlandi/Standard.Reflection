@@ -48,7 +48,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Attributes
 
         [Theory]
         [MemberData(nameof(GetCustomAttributeExceptions))]
-        public void ShouldThrowDependencyValidationExceptionOnRetrieveIfNotSupportedDependencyValidationExceptionErrorOccurs(
+        public void ShouldThrowDependencyValidationExceptionOnRetrieveIfDependencyValidationExceptionErrorOccurs(
             Exception dependencyValidationException)
         {
             // given

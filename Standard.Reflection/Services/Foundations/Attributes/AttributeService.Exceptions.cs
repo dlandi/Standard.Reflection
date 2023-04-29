@@ -3,7 +3,9 @@
 // ----------------------------------------------------------------------------------
 
 using System;
+using System.Reflection;
 using Standard.Reflection.Models.Foundations.Attributes.Exceptions;
+using Standard.Reflection.Models.Foundations.Properties.Exceptions;
 
 namespace Standard.Reflection.Services.Foundations.Attributes
 {
@@ -28,6 +30,37 @@ namespace Standard.Reflection.Services.Foundations.Attributes
                     new AttributeValidationException(nullPropertyInfoException);
 
                 throw attributeValidationException;
+            }
+            catch (NotSupportedException notSupportedException)
+            {
+                var failedAttributeServiceException =
+                    new FailedAttributeServiceException(notSupportedException);
+
+                var attributeDependencyValidationException =
+                    new AttributeDependencyValidationException(failedAttributeServiceException);
+
+                throw attributeDependencyValidationException;
+            }
+            catch (AmbiguousMatchException ambiguousMatchException)
+            {
+                var failedAttributeServiceException =
+                    new FailedAttributeServiceException(ambiguousMatchException);
+
+                var attributeDependencyValidationException =
+                    new AttributeDependencyValidationException(failedAttributeServiceException);
+
+                throw attributeDependencyValidationException;
+
+            }
+            catch (TypeLoadException typeLoadException)
+            {
+                var failedAttributeServiceException =
+                    new FailedAttributeServiceException(typeLoadException);
+
+                var attributeDependencyValidationException =
+                    new AttributeDependencyValidationException(failedAttributeServiceException);
+
+                throw attributeDependencyValidationException;
             }
         }
     }
