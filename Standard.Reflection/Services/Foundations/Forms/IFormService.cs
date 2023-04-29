@@ -26,7 +26,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
         MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
-            string content,
+            Stream stream,
             string name,
             string fileName);
     }

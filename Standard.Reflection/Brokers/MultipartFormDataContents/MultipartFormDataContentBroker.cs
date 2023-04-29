@@ -43,12 +43,12 @@ namespace Standard.Reflection.Brokers.MultipartFormDataContents
 
         public MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
-            string content,
+            Stream stream,
             string name,
             string fileName)
         {
-            var stringContent = new StringContent(content);
-            multipartFormDataContent.Add(stringContent, name, fileName);
+            var streamContent = new StreamContent(stream);
+            multipartFormDataContent.Add(streamContent, name, fileName);
 
             return multipartFormDataContent;
         }

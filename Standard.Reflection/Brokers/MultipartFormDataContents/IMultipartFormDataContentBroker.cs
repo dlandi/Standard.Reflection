@@ -26,7 +26,7 @@ namespace Standard.Reflection.Brokers.MultipartFormDataContents
 
         MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
-            string content,
+            Stream content,
             string name,
             string fileName);
     }
