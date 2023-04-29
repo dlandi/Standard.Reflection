@@ -8,6 +8,7 @@ using System.IO;
 using Moq;
 using Standard.Reflection.Brokers.Types;
 using Standard.Reflection.Services;
+using Standard.Reflection.Services.Foundations.Types;
 
 namespace Standard.Reflection.Unit.Tests.Services.Foundations
 {

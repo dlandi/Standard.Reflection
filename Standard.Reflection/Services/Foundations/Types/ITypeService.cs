@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Standard.Reflection.Services
+namespace Standard.Reflection.Services.Foundations.Types
 {
     internal interface ITypeService
     {

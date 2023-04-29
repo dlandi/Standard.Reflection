@@ -4,6 +4,7 @@
 
 using System;
 using Standard.Reflection.Models.Foundations.Types.Exceptions;
+using Standard.Reflection.Services.Foundations.Types;
 
 namespace Standard.Reflection.Services
 {
