@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------------
 
 using System;
+using System.IO;
 using System.Net.Http;
 using Standard.Reflection.Models.Foundations.Forms.Exceptions;
 
@@ -71,6 +72,19 @@ namespace Standard.Reflection.Services.Foundations.Forms
                     new NullContentException(innerException: argumentNullException);
 
                 throw nullNameException;
+            }
+        }
+        
+        private static void ValidateStreamContentIsNotNull(Stream content)
+        {
+            if (content == null)
+            {
+                var argumentNullException = new ArgumentNullException(nameof(content));
+
+                var nullContentException =
+                    new NullContentException(innerException: argumentNullException);
+
+                throw nullContentException;
             }
         }
     }

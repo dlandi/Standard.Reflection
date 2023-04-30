@@ -27,12 +27,12 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
         MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
-            Stream stream,
+            Stream content,
             string name);
 
         MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
-            Stream stream,
+            Stream content,
             string name,
             string fileName);
     }
