@@ -85,6 +85,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
             ValidateStreamContentIsNotNull(content);
             ValidateNameIsNotNullOrWhiteSpace(name);
+            ValidateFileNameIsNotNullOrWhiteSpace(fileName);
 
             MultipartFormDataContent returnedMultipartFormDataContent =
                 this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, content, name, fileName);
