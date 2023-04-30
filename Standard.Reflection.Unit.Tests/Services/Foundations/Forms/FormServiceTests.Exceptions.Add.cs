@@ -17,7 +17,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
     {
         [Theory]
         [MemberData(nameof(GetAddExceptions))]
-        public void ShouldThrowDependencyValidationExceptionOnAddIfDependencyValidationExceptionErrorOccurs(
+        public void ShouldThrowFormDependencyValidationExceptionOnAddIfDependencyValidationExceptionErrorOccurs(
             Exception dependencyValidationException)
         {
             // given
@@ -26,10 +26,11 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
             Stream someContent = CreateSomeStreamContent();
             string randomName = CreateRandomString();
 
-            var failedFormServiceException = new FailedFormServiceException(dependencyValidationException);
+            var formDependencyValidationException =
+                new FormDependencyValidationException(dependencyValidationException);
 
-            var expectedFormDependencyValidationException =
-                new FormDependencyValidationException(failedFormServiceException);
+            var expectedFormValidationException =
+                new FormValidationException(formDependencyValidationException);
 
             this.multipartFormDataContentBroker.Setup(broker =>
                 broker.AddStreamContent(It.IsAny<MultipartFormDataContent>(), It.IsAny<Stream>(), It.IsAny<string>()))
@@ -39,12 +40,12 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
             Action retrieveAttributeAction =
                 () => this.formService.AddStreamContent(multipartFormDataContent, someContent, randomName);
 
-            FormDependencyValidationException actualFormDependencyValidationException =
-                  Assert.Throws<FormDependencyValidationException>(retrieveAttributeAction);
+            FormValidationException actualFormValidationException =
+                  Assert.Throws<FormValidationException>(retrieveAttributeAction);
 
             // then
-            actualFormDependencyValidationException.Should()
-                .BeEquivalentTo(expectedFormDependencyValidationException);
+            actualFormValidationException.Should()
+                .BeEquivalentTo(expectedFormValidationException);
 
             this.multipartFormDataContentBroker.Verify(broker =>
                 broker.AddStreamContent(It.IsAny<MultipartFormDataContent>(), It.IsAny<Stream>(), It.IsAny<string>()),
