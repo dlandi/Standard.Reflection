@@ -231,5 +231,40 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 
             this.multipartFormDataContentBroker.VerifyNoOtherCalls();
         }
+        [Fact]
+        public void ShouldThrowFormValidationExceptionOnAddByteContentWithFileNameIfByteContentIsNull()
+        {
+            // given
+            var nullMultipartFormDataContent = new MultipartFormDataContent();
+            string name = CreateRandomString();
+            string randomFileName = CreateRandomString();
+            byte[] nullContent = null;
+
+            ArgumentNullException argumentNullException =
+                new ArgumentNullException(paramName: "content");
+
+            var nullContentException =
+                new NullContentException(innerException: argumentNullException);
+
+            var expectedFormValidationException =
+                new FormValidationException(innerException: nullContentException);
+
+            // when
+            Action addByteContentAction =
+                () => formService.AddByteContent(nullMultipartFormDataContent, nullContent, name, randomFileName);
+
+            FormValidationException actualFormValidationException =
+                Assert.Throws<FormValidationException>(addByteContentAction);
+
+            // then
+            actualFormValidationException.Should()
+                .BeEquivalentTo(expectedFormValidationException);
+
+            this.multipartFormDataContentBroker.Verify(broker =>
+                broker.AddByteContent(nullMultipartFormDataContent, nullContent, name, randomFileName),
+                    Times.Never);
+
+            this.multipartFormDataContentBroker.VerifyNoOtherCalls();
+        }
     }
 }
