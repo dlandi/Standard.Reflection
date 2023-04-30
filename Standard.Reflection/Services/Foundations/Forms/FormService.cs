@@ -71,7 +71,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
             MultipartFormDataContent returnedMultipartFormDataContent =
                 this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, content, name);
-            
+
             return returnedMultipartFormDataContent;
         });
 
