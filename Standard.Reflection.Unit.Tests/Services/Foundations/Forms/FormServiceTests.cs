@@ -32,5 +32,9 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 
         private static MemoryStream CreateSomeStreamContent() =>
             new MemoryStream();
+
+        private static MemoryStream CreateSomeStream() =>
+            new MemoryStream();
+
     }
 }

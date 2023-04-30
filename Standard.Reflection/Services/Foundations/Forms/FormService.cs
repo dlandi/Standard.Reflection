@@ -50,6 +50,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
         TryCatch(() =>
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
+            ValidateStringContentIsNotNullOrWhiteSpace(content);
             ValidateNameIsNotNullOrWhiteSpace(name);
 
             MultipartFormDataContent returnedMultipartFormDataContent =
@@ -60,12 +61,15 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
         public MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
-            Stream stream, string name) =>
+            Stream stream,
+            string name) =>
             this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, stream, name);
 
         public MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
-            Stream stream, string name, string fileName) =>
+            Stream stream,
+            string name,
+            string fileName) =>
             this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, stream, name, fileName);
     }
 }

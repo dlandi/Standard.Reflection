@@ -61,5 +61,17 @@ namespace Standard.Reflection.Services.Foundations.Forms
                 throw nullContentException;
             }
         }
+        private static void ValidateStringContentIsNotNullOrWhiteSpace(string content)
+        {
+            if (String.IsNullOrWhiteSpace(content))
+            {
+                var argumentNullException = new ArgumentNullException(nameof(content));
+
+                var nullNameException =
+                    new NullContentException(innerException: argumentNullException);
+
+                throw nullNameException;
+            }
+        }
     }
 }
