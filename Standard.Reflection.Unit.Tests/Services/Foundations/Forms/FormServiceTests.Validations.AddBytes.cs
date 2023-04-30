@@ -47,5 +47,44 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 
             this.multipartFormDataContentBroker.VerifyNoOtherCalls();
         }
+
+
+
+        [Theory]
+        [InlineData(data: null)]
+        [InlineData(data: "")]
+        [InlineData(data: "   ")]
+        public void ShouldThrowFormValidationExceptionOnAddByteContentIfNameIsNullOrWhiteSpace(string invalidName)
+        {
+            // given
+            var nullMultipartFormDataContent = new MultipartFormDataContent();
+            byte[] someContent = CreateSomeByteArrayContent();
+
+            ArgumentNullException argumentNullException =
+                new ArgumentNullException(paramName: nameof(MultipartFormDataContent));
+
+            var nullNameException =
+                new NullNameException(innerException: argumentNullException);
+
+            var expectedFormValidationException =
+                new FormValidationException(innerException: nullNameException);
+
+            // when
+            Action addByteContentAction =
+                () => formService.AddByteContent(nullMultipartFormDataContent, someContent, invalidName);
+
+            FormValidationException actualFormValidationException =
+                Assert.Throws<FormValidationException>(addByteContentAction);
+
+            // then
+            actualFormValidationException.Should()
+                .BeEquivalentTo(expectedFormValidationException);
+
+            this.multipartFormDataContentBroker.Verify(broker =>
+                broker.AddByteContent(nullMultipartFormDataContent, someContent, invalidName),
+                    Times.Never);
+
+            this.multipartFormDataContentBroker.VerifyNoOtherCalls();
+        }
     }
 }
