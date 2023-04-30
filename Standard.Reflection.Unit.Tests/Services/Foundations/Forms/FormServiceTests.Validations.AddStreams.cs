@@ -84,5 +84,76 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 
             this.multipartFormDataContentBroker.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldThrowFormValidationExceptionOnAddStreamContentWithNoFileNameIfStreamContentIsNull()
+        {
+            // given
+            var nullMultipartFormDataContent = new MultipartFormDataContent();
+            string name = CreateRandomString();
+            Stream nullContent = null;
+
+            ArgumentNullException argumentNullException =
+                new ArgumentNullException(paramName: "content");
+
+            var nullContentException =
+                new NullContentException(innerException: argumentNullException);
+
+            var expectedFormValidationException =
+                new FormValidationException(innerException: nullContentException);
+
+            // when
+            Action addByteContentAction =
+                () => formService.AddStreamContent(nullMultipartFormDataContent, nullContent, name);
+
+            FormValidationException actualFormValidationException =
+                Assert.Throws<FormValidationException>(addByteContentAction);
+
+            // then
+            actualFormValidationException.Should()
+                .BeEquivalentTo(expectedFormValidationException);
+
+            this.multipartFormDataContentBroker.Verify(broker =>
+                broker.AddStreamContent(nullMultipartFormDataContent, nullContent, name),
+                    Times.Never);
+
+            this.multipartFormDataContentBroker.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public void ShouldThrowFormValidationExceptionOnAddStreamContentWithFileNameIfStreamContentIsNull()
+        {
+            // given
+            var nullMultipartFormDataContent = new MultipartFormDataContent();
+            string name = CreateRandomString();
+            string randomFileName = CreateRandomString();
+            Stream nullContent = null;
+
+            ArgumentNullException argumentNullException =
+                new ArgumentNullException(paramName: "content");
+
+            var nullContentException =
+                new NullContentException(innerException: argumentNullException);
+
+            var expectedFormValidationException =
+                new FormValidationException(innerException: nullContentException);
+
+            // when
+            Action addByteContentAction =
+                () => formService.AddStreamContent(nullMultipartFormDataContent, nullContent, name, randomFileName);
+
+            FormValidationException actualFormValidationException =
+                Assert.Throws<FormValidationException>(addByteContentAction);
+
+            // then
+            actualFormValidationException.Should()
+                .BeEquivalentTo(expectedFormValidationException);
+
+            this.multipartFormDataContentBroker.Verify(broker =>
+                broker.AddStreamContent(nullMultipartFormDataContent, nullContent, name, randomFileName),
+                    Times.Never);
+
+            this.multipartFormDataContentBroker.VerifyNoOtherCalls();
+        }
     }
 }
