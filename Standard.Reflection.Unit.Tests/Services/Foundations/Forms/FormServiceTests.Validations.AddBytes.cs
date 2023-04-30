@@ -48,8 +48,6 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
             this.multipartFormDataContentBroker.VerifyNoOtherCalls();
         }
 
-
-
         [Theory]
         [InlineData(data: null)]
         [InlineData(data: "")]
