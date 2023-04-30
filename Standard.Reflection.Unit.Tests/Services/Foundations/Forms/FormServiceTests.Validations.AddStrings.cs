@@ -14,7 +14,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
     public partial class FormServiceTests
     {
         [Fact]
-        public void ShouldThrowFormValidationExceptionWithNoFileNameOnAddStringContentIfMultipartFormDataContentIsNull()
+        public void ShouldThrowFormValidationExceptionNameOnAddStringContentIfMultipartFormDataContentIsNull()
         {
             // given
             MultipartFormDataContent nullMultipartFormDataContent = CreateNullMultipartFormDataContent();
@@ -43,6 +43,44 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 
             this.multipartFormDataContentBroker.Verify(broker =>
                 broker.AddStringContent(nullMultipartFormDataContent, someContent, randomName),
+                    Times.Never);
+
+            this.multipartFormDataContentBroker.VerifyNoOtherCalls();
+        }
+
+        [Theory]
+        [InlineData(data: null)]
+        [InlineData(data: "")]
+        [InlineData(data: "   ")]
+        public void ShouldThrowFormValidationExceptionOnAddStringContentIfNameIsNullOrWhiteSpace(string invalidName)
+        {
+            // given
+            var someMultipartFormDataContent = new MultipartFormDataContent();
+            string someContent = CreateRandomString();
+            string inputContent = someContent;
+
+            var argumentNullException =
+                new ArgumentNullException(paramName: "name");
+
+            var nullNameException =
+                new NullNameException(innerException: argumentNullException);
+
+            var expectedFormValidationException =
+                new FormValidationException(innerException: nullNameException);
+
+            // when
+            Action addByteContentAction =
+                () => formService.AddStringContent(someMultipartFormDataContent, inputContent, invalidName);
+
+            FormValidationException actualFormValidationException =
+                Assert.Throws<FormValidationException>(addByteContentAction);
+
+            // then
+            actualFormValidationException.Should()
+                .BeEquivalentTo(expectedFormValidationException);
+
+            this.multipartFormDataContentBroker.Verify(broker =>
+                broker.AddStringContent(someMultipartFormDataContent, inputContent, invalidName),
                     Times.Never);
 
             this.multipartFormDataContentBroker.VerifyNoOtherCalls();
