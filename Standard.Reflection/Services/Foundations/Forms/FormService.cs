@@ -45,7 +45,12 @@ namespace Standard.Reflection.Services.Foundations.Forms
             MultipartFormDataContent multipartFormDataContent,
             string content,
             string name) =>
-            this.multipartFormDataContentBroker.AddStringContent(multipartFormDataContent, content, name);
+        TryCatch(() =>
+        {
+            ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
+
+            return this.multipartFormDataContentBroker.AddStringContent(multipartFormDataContent, content, name);
+        });
 
         public MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
