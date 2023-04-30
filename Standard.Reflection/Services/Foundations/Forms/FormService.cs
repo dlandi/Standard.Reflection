@@ -22,7 +22,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
         TryCatch(() =>
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
-            ValidateByteContent(content);
+            ValidateByteContentIsNotNull(content);
             ValidateNameIsNotNullOrWhiteSpace(name);
 
             return this.multipartFormDataContentBroker.AddByteContent(multipartFormDataContent, content, name);
@@ -36,6 +36,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
         TryCatch(() =>
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
+            ValidateByteContentIsNotNull(content);
             ValidateNameIsNotNullOrWhiteSpace(name);
             ValidateFileNameIsNotNullOrWhiteSpace(fileName);
 

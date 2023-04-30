@@ -49,7 +49,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
             }
         }
 
-        private static void ValidateByteContent(byte[] content)
+        private static void ValidateByteContentIsNotNull(byte[] content)
         {
             if (content == null)
             {
