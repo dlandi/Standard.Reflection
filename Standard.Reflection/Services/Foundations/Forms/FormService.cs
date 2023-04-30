@@ -36,6 +36,8 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
             ValidateNameIsNotNullOrWhiteSpace(name);
 
+            ValidateFileNameIsNotNullOrWhiteSpace(fileName);
+
             return this.multipartFormDataContentBroker.AddByteContent(multipartFormDataContent, content, name, fileName);
         });
 

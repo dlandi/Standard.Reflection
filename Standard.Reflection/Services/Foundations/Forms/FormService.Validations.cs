@@ -36,5 +36,17 @@ namespace Standard.Reflection.Services.Foundations.Forms
             }
         }
 
+        private static void ValidateFileNameIsNotNullOrWhiteSpace(string fileName)
+        {
+            if (String.IsNullOrWhiteSpace(fileName))
+            {
+                var argumentNullException = new ArgumentNullException(nameof(fileName));
+
+                var nullNameException =
+                    new NullFileNameException(innerException: argumentNullException);
+
+                throw nullNameException;
+            }
+        }
     }
 }

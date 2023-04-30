@@ -31,6 +31,13 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
                 throw formValidationException;
             }
+            catch (NullFileNameException nullFileNameException)
+            {
+                var formValidationException =
+                    new FormValidationException(nullFileNameException);
+
+                throw formValidationException;
+            }
         }
     }
 }
