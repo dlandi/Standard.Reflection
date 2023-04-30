@@ -45,6 +45,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
         TryCatch(() =>
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
+            ValidateNameIsNotNullOrWhiteSpace(name);
 
             return this.multipartFormDataContentBroker.AddStringContent(multipartFormDataContent, content, name);
         });
