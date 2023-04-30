@@ -22,13 +22,22 @@ namespace Standard.Reflection.Services.Foundations.Forms
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
 
+            ValidateNameIsNotNullOrWhiteSpace(name);
+
             return this.multipartFormDataContentBroker.AddByteContent(multipartFormDataContent, content, name);
         });
 
         public MultipartFormDataContent AddByteContent(
             MultipartFormDataContent multipartFormDataContent,
             byte[] content, string name, string fileName) =>
-            this.multipartFormDataContentBroker.AddByteContent(multipartFormDataContent, content, name, fileName);
+        TryCatch(() =>
+        {
+            ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
+
+            ValidateNameIsNotNullOrWhiteSpace(name);
+
+            return this.multipartFormDataContentBroker.AddByteContent(multipartFormDataContent, content, name, fileName);
+        });
 
         public MultipartFormDataContent AddStringContent(
             MultipartFormDataContent multipartFormDataContent,

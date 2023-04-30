@@ -22,5 +22,19 @@ namespace Standard.Reflection.Services.Foundations.Forms
                 throw nullMultipartFormDataContentException;
             }
         }
+
+        private static void ValidateNameIsNotNullOrWhiteSpace(string name)
+        {
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                var argumentNullException = new ArgumentNullException(nameof(name));
+
+                var nullNameException =
+                    new NullNameException(innerException: argumentNullException);
+
+                throw nullNameException;
+            }
+        }
+
     }
 }
