@@ -21,17 +21,17 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
             byte[] someContent = CreateSomeByteArrayContent();
             string randomName = CreateRandomString();
 
-            ArgumentNullException argumentNullException = 
+            ArgumentNullException argumentNullException =
                 new ArgumentNullException(nameof(MultipartFormDataContent));
 
             var nullMultipartFormDataContentException =
                 new NullMultipartFormDataContentException(argumentNullException);
 
-            var expecteedFormValidationException =
+            var expectedFormValidationException =
                 new FormValidationException(nullMultipartFormDataContentException);
 
             // when
-            Action addByteContentAction = 
+            Action addByteContentAction =
                 () => formService.AddByteContent(nullMultipartFormDataContent, someContent, randomName);
 
             FormValidationException actualFormValidationException =
@@ -39,10 +39,48 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 
             // then
             actualFormValidationException.Should()
-                .BeEquivalentTo(expecteedFormValidationException);
+                .BeEquivalentTo(expectedFormValidationException);
 
             this.multipartFormDataContentBroker.Verify(broker =>
                 broker.AddByteContent(nullMultipartFormDataContent, someContent, randomName),
+                    Times.Never);
+
+            this.multipartFormDataContentBroker.VerifyNoOtherCalls();
+        }
+
+       
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void ShouldThrowFormValidationExceptionOnAddByteContentIfNameIsNullOrWhiteSpace(string invalidName)
+        {
+            // given
+            var nullMultipartFormDataContent = new MultipartFormDataContent();
+            byte[] someContent = CreateSomeByteArrayContent();
+
+            ArgumentNullException argumentNullException =
+                new ArgumentNullException(nameof(MultipartFormDataContent));
+
+            var nullMultipartFormDataContentException =
+                new NullMultipartFormDataContentException(argumentNullException);
+
+            var expectedFormValidationException =
+                new FormValidationException(nullMultipartFormDataContentException);
+
+            // when
+            Action addByteContentAction =
+                () => formService.AddByteContent(nullMultipartFormDataContent, someContent, invalidName);
+
+            FormValidationException actualFormValidationException =
+                Assert.Throws<FormValidationException>(addByteContentAction);
+
+            // then
+            actualFormValidationException.Should()
+                .BeEquivalentTo(expectedFormValidationException);
+
+            this.multipartFormDataContentBroker.Verify(broker =>
+                broker.AddByteContent(nullMultipartFormDataContent, someContent, invalidName),
                     Times.Never);
 
             this.multipartFormDataContentBroker.VerifyNoOtherCalls();
