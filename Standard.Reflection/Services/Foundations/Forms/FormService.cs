@@ -63,7 +63,12 @@ namespace Standard.Reflection.Services.Foundations.Forms
             MultipartFormDataContent multipartFormDataContent,
             Stream stream,
             string name) =>
-            this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, stream, name);
+        TryCatch(() =>
+        {
+            ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
+
+            return this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, stream, name);
+        });
 
         public MultipartFormDataContent AddStreamContent(
             MultipartFormDataContent multipartFormDataContent,
