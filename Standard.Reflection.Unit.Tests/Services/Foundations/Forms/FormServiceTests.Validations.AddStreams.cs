@@ -2,13 +2,13 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using Moq;
-using System.Net.Http;
 using System;
-using Xunit;
-using Standard.Reflection.Models.Foundations.Forms.Exceptions;
-using FluentAssertions;
 using System.IO;
+using System.Net.Http;
+using FluentAssertions;
+using Moq;
+using Standard.Reflection.Models.Foundations.Forms.Exceptions;
+using Xunit;
 
 namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 {
