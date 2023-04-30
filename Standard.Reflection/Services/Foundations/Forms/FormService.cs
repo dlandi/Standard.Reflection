@@ -21,6 +21,11 @@ namespace Standard.Reflection.Services.Foundations.Forms
             byte[] content, string name) =>
             this.multipartFormDataContentBroker.AddByteContent(multipartFormDataContent, content, name);
 
+        public MultipartFormDataContent AddByteContent(
+            MultipartFormDataContent multipartFormDataContent,
+            byte[] content, string name, string fileName) =>
+            this.multipartFormDataContentBroker.AddByteContent(multipartFormDataContent, content, name, fileName);
+
         public MultipartFormDataContent AddStringContent(
             MultipartFormDataContent multipartFormDataContent,
             string content,

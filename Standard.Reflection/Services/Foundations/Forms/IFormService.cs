@@ -14,6 +14,12 @@ namespace Standard.Reflection.Services.Foundations.Forms
             byte[] content,
             string name);
 
+        MultipartFormDataContent AddByteContent(
+            MultipartFormDataContent multipartFormDataContent,
+            byte[] content,
+            string name,
+            string fileName);
+
         MultipartFormDataContent AddStringContent(
             MultipartFormDataContent multipartFormDataContent,
             string content,

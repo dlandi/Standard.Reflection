@@ -15,10 +15,23 @@ namespace Standard.Reflection.Brokers.MultipartFormDataContents
             string name)
         {
             var byteContent = new ByteArrayContent(content);
-            multipartFormDataContent.Add(byteContent);
+            multipartFormDataContent.Add(byteContent, name);
 
             return multipartFormDataContent;
         }
+
+        public MultipartFormDataContent AddByteContent(
+            MultipartFormDataContent multipartFormDataContent,
+            byte[] content,
+            string name,
+            string fileName)
+        {
+            var byteContent = new ByteArrayContent(content);
+            multipartFormDataContent.Add(byteContent, name, fileName);
+
+            return multipartFormDataContent;
+        }
+
         public MultipartFormDataContent AddStringContent(
             MultipartFormDataContent multipartFormDataContent,
             string content,

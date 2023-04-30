@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------------
 
 using System.IO;
+using System.Net.Http;
 using System.Text;
 using Moq;
 using Standard.Reflection.Brokers.MultipartFormDataContents;
@@ -21,6 +22,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
             this.multipartFormDataContentBroker = new Mock<IMultipartFormDataContentBroker>();
             this.formService = new FormService(multipartFormDataContentBroker.Object);
         }
+        private static MultipartFormDataContent CreateNullMultipartFormDataContent() => null;
 
         private static byte[] CreateSomeByteArrayContent() =>
             Encoding.UTF8.GetBytes(CreateRandomString());
