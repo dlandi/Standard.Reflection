@@ -17,7 +17,8 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
         public MultipartFormDataContent AddByteContent(
             MultipartFormDataContent multipartFormDataContent,
-            byte[] content, string name) =>
+            byte[] content,
+            string name) =>
         TryCatch(() =>
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
@@ -28,7 +29,9 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
         public MultipartFormDataContent AddByteContent(
             MultipartFormDataContent multipartFormDataContent,
-            byte[] content, string name, string fileName) =>
+            byte[] content,
+            string name,
+            string fileName) =>
         TryCatch(() =>
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
@@ -47,7 +50,10 @@ namespace Standard.Reflection.Services.Foundations.Forms
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
             ValidateNameIsNotNullOrWhiteSpace(name);
 
-            return this.multipartFormDataContentBroker.AddStringContent(multipartFormDataContent, content, name);
+            MultipartFormDataContent returnedMultipartFormDataContent =
+                this.multipartFormDataContentBroker.AddStringContent(multipartFormDataContent, content, name);
+
+            return returnedMultipartFormDataContent;
         });
 
         public MultipartFormDataContent AddStreamContent(
