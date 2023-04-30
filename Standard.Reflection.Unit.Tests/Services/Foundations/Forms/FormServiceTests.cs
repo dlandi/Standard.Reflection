@@ -2,13 +2,16 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using System;
 using System.IO;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using Moq;
 using Standard.Reflection.Brokers.MultipartFormDataContents;
 using Standard.Reflection.Services.Foundations.Forms;
 using Tynamix.ObjectFiller;
+using Xunit;
 
 namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
 {
@@ -36,5 +39,14 @@ namespace Standard.Reflection.Unit.Tests.Services.Foundations.Forms
         private static MemoryStream CreateSomeStream() =>
             new MemoryStream();
 
+        public static TheoryData GetAddExceptions()
+        {
+            return new TheoryData<Exception>()
+            {
+                new ArgumentException(),
+                new ArgumentNullException(),
+                new ArgumentOutOfRangeException()
+            };
+        }
     }
 }
