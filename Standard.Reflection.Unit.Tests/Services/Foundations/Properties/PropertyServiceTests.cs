@@ -4,7 +4,6 @@
 
 using System;
 using System.Linq;
-using System.Net.WebSockets;
 using System.Reflection;
 using Moq;
 using Standard.Reflection.Brokers.Properties;

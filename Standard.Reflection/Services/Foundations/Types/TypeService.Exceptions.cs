@@ -20,9 +20,11 @@ namespace Standard.Reflection.Services
             }
             catch (Exception exception)
             {
-                var failedTypeServiceException = new FailedTypeServiceException(exception);
+                var failedTypeServiceException =
+                    new FailedTypeServiceException(exception);
 
-                var typeServiceException = new TypeServiceException(failedTypeServiceException);
+                var typeServiceException =
+                    new TypeServiceException(failedTypeServiceException);
 
                 throw typeServiceException;
             }

@@ -5,18 +5,18 @@
 using System.IO;
 using System.Net.Http;
 
-namespace Standard.Reflection.Brokers.FormContents
+namespace Standard.Reflection.Services.Foundations.Forms
 {
-    internal interface IMultipartFormDataContentBroker
+    internal interface IFormService
     {
-        MultipartFormDataContent AddStreamContent(
+        MultipartFormDataContent AddByteContent(
             MultipartFormDataContent multipartFormDataContent,
-            Stream stream,
+            byte[] content,
             string name);
 
-        MultipartFormDataContent AddStreamContent(
+        MultipartFormDataContent AddByteContent(
             MultipartFormDataContent multipartFormDataContent,
-            string content,
+            byte[] content,
             string name,
             string fileName);
 
@@ -24,5 +24,16 @@ namespace Standard.Reflection.Brokers.FormContents
             MultipartFormDataContent multipartFormDataContent,
             string content,
             string name);
+
+        MultipartFormDataContent AddStreamContent(
+            MultipartFormDataContent multipartFormDataContent,
+            Stream content,
+            string name);
+
+        MultipartFormDataContent AddStreamContent(
+            MultipartFormDataContent multipartFormDataContent,
+            Stream content,
+            string name,
+            string fileName);
     }
 }
