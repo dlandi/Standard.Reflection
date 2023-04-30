@@ -48,5 +48,18 @@ namespace Standard.Reflection.Services.Foundations.Forms
                 throw nullNameException;
             }
         }
+
+        private static void ValidateByteContent(byte[] content)
+        {
+            if (content == null)
+            {
+                var argumentNullException = new ArgumentNullException(nameof(content));
+
+                var nullContentException =
+                    new NullContentException(innerException: argumentNullException);
+
+                throw nullContentException;
+            }
+        }
     }
 }
