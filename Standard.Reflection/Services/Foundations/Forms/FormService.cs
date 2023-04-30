@@ -67,6 +67,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
             ValidateStreamContentIsNotNull(content);
+            ValidateNameIsNotNullOrWhiteSpace(name);
 
             MultipartFormDataContent returnedMultipartFormDataContent =
                 this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, content, name);
@@ -83,6 +84,7 @@ namespace Standard.Reflection.Services.Foundations.Forms
         {
             ValidateMultipartFormDataContentIsNotNull(multipartFormDataContent);
             ValidateStreamContentIsNotNull(content);
+            ValidateNameIsNotNullOrWhiteSpace(name);
 
             MultipartFormDataContent returnedMultipartFormDataContent =
                 this.multipartFormDataContentBroker.AddStreamContent(multipartFormDataContent, content, name, fileName);
