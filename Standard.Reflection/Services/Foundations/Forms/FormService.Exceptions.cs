@@ -76,6 +76,13 @@ namespace Standard.Reflection.Services.Foundations.Forms
 
                 throw formValidationException;
             }
+            catch(Exception exception)
+            {
+                var failedFormServiceException = new FailedFormServiceException(exception);
+                var formServiceException = new FormServiceException(failedFormServiceException);
+
+                throw formServiceException;
+            }
         }
     }
 }
