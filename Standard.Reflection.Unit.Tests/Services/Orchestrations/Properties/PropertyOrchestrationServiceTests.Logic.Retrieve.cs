@@ -2,12 +2,10 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using FluentAssertions;
-using Moq;
-using Standard.Reflection.Unit.Tests.Services.Foundations.Properties;
 using System;
 using System.Reflection;
-using System.Reflection.Metadata;
+using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
@@ -49,6 +47,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
                 service.RetrieveProperties(someType),
                     Times.Once());
 
+            this.typeServiceMock.VerifyNoOtherCalls();
             this.propertyServiceMock.VerifyNoOtherCalls();
         }
     }
