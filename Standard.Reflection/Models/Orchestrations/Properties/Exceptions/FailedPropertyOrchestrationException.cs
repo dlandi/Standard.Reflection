@@ -10,7 +10,8 @@ namespace Standard.Reflection.Models.Orchestrations.Properties.Exceptions
     public class FailedPropertyOrchestrationException : Xeption
     {
         public FailedPropertyOrchestrationException(Exception innerException)
-            : base(message: "",innerException)
+            : base(message: "Failed Property Orchestration Service Exception occurred, please contact support for assistance.",
+                  innerException)
         { }
     }
 }

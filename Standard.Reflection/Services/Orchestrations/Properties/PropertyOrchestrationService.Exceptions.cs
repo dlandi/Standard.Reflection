@@ -2,6 +2,7 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using System;
 using Standard.Reflection.Models.Foundations.Properties.Exceptions;
 using Standard.Reflection.Models.Foundations.Types.Exceptions;
 using Standard.Reflection.Models.Orchestrations.Properties;
@@ -46,6 +47,16 @@ namespace Standard.Reflection.Services.Orchestrations.Properties
                     new PropertyOrchestrationDependencyException(propertyServiceException);
 
                 throw propertyOrchestrationDependencyException;
+            }
+            catch (Exception exception)
+            {
+                var failedPropertyOrchestrationException =
+                    new FailedPropertyOrchestrationException(exception);
+
+                var propertyPropertyOrchestrationException =
+                    new PropertyOrchestrationException(failedPropertyOrchestrationException);
+
+                throw propertyPropertyOrchestrationException;
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Standard.Reflection.Models.Orchestrations.Properties.Exceptions
     public class PropertyOrchestrationException : Xeption
     {
         public PropertyOrchestrationException(Xeption innerException)
-            : base(message: "",innerException)
+            : base(message: "Property service error occurred, contact support.", innerException)
         { }
     }
 }
