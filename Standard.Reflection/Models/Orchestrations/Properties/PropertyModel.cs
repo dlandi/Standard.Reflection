@@ -2,12 +2,13 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using Standard.Reflection.Models.Orchestrations.Properties;
+using System.Reflection;
 
-namespace Standard.Reflection.Services.Orchestrations.Properties
+namespace Standard.Reflection.Models.Orchestrations.Properties
 {
-    internal interface IPropertyOrchestrationService
+    internal class PropertyModel
     {
-        PropertyModel RetrieveProperties(PropertyModel propertyModel);
+        public object Object { get; set; }
+        public PropertyInfo[] Properties { get; set; }
     }
 }

@@ -5,7 +5,9 @@
 using System;
 using System.Reflection;
 using FluentAssertions;
+using Force.DeepCloner;
 using Moq;
+using Standard.Reflection.Models.Orchestrations.Properties;
 using Xunit;
 
 namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
@@ -18,10 +20,14 @@ namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
             // given
             object someObject = new object();
             object inputObject = someObject;
+            PropertyModel somePropertyModel = CreateSomePropertyModel(inputObject);
+            PropertyModel inputPropertyModel = somePropertyModel;
+            PropertyModel expectedPropertyModel = inputPropertyModel.DeepClone();
             Type someType = typeof(object);
             PropertyInfo[] randomProperties = CreateRandomProperties();
             PropertyInfo[] returnedProperties = randomProperties;
             PropertyInfo[] expectedProperties = returnedProperties;
+            expectedPropertyModel.Properties = expectedProperties.DeepClone();
             var sequence = new MockSequence();
 
             this.typeServiceMock.InSequence(sequence).Setup(service =>
@@ -33,11 +39,11 @@ namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
                     .Returns(returnedProperties);
 
             // when
-            var actualProperties =
-                this.propertyOrchestrationService.RetrieveProperties(inputObject);
+            var actualPropertyModel =
+                this.propertyOrchestrationService.RetrieveProperties(inputPropertyModel);
 
             // then
-            actualProperties.Should().BeEquivalentTo(expectedProperties);
+            actualPropertyModel.Should().BeEquivalentTo(expectedPropertyModel);
 
             this.typeServiceMock.Verify(service =>
                 service.RetrieveType(inputObject),

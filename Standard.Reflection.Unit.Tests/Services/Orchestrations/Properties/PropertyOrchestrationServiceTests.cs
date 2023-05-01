@@ -9,6 +9,7 @@ using Moq;
 using Standard.Reflection.Services.Foundations.Properties;
 using Standard.Reflection.Services.Foundations.Types;
 using Standard.Reflection.Services.Orchestrations.Properties;
+using Standard.Reflection.Models.Orchestrations.Properties;
 
 namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
 {
@@ -42,5 +43,14 @@ namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
             var random = Random.Shared;
             return random.Next(minValue: 3, maxValue: 8);
         }
+
+        private static PropertyModel CreateSomePropertyModel(object inputObject)
+        {
+            return new PropertyModel
+            {
+                Object = inputObject,
+            };
+        }
+
     }
 }

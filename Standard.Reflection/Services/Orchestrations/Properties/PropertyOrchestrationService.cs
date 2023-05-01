@@ -4,6 +4,7 @@
 
 using System;
 using System.Reflection;
+using Standard.Reflection.Models.Orchestrations.Properties;
 using Standard.Reflection.Services.Foundations.Properties;
 using Standard.Reflection.Services.Foundations.Types;
 
@@ -20,13 +21,13 @@ namespace Standard.Reflection.Services.Orchestrations.Properties
             this.propertyService = propertyService;
         }
 
-        public PropertyInfo[] RetrieveProperties(object @object)
+        public PropertyModel RetrieveProperties(PropertyModel propertyModel)
         {
-            Type type = typeService.RetrieveType(@object);
-
+            Type type = typeService.RetrieveType(propertyModel.Object);
             PropertyInfo[] properties = propertyService.RetrieveProperties(type);
+            propertyModel.Properties = properties;
 
-            return properties;
+            return propertyModel;
         }
     }
 }
