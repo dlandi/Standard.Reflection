@@ -39,8 +39,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
 
         private static int GetRandomNumber()
         {
-
-            var random = new Random();
+            var random = Random.Shared;
             return random.Next(minValue: 3, maxValue: 8);
         }
     }
