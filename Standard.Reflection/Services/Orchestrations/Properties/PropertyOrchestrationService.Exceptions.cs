@@ -2,6 +2,8 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using Standard.Reflection.Models.Foundations.Properties.Exceptions;
+using Standard.Reflection.Models.Foundations.Types.Exceptions;
 using Standard.Reflection.Models.Orchestrations.Properties;
 using Standard.Reflection.Models.Orchestrations.Properties.Exceptions;
 
@@ -30,6 +32,20 @@ namespace Standard.Reflection.Services.Orchestrations.Properties
                     new PropertyOrchestrationDependencyValidationException(nullObjectException);
 
                 throw propertyOrchestrationDependencyValidationException;
+            }
+            catch (TypeServiceException typeServiceException)
+            {
+                var propertyOrchestrationDependencyException =
+                    new PropertyOrchestrationDependencyException(typeServiceException);
+
+                throw propertyOrchestrationDependencyException;
+            }
+            catch (PropertyServiceException propertyServiceException)
+            {
+                var propertyOrchestrationDependencyException =
+                    new PropertyOrchestrationDependencyException(propertyServiceException);
+
+                throw propertyOrchestrationDependencyException;
             }
         }
     }

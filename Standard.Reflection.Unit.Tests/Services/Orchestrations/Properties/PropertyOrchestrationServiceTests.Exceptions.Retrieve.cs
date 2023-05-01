@@ -31,7 +31,7 @@ namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
                     .Throws(dependencyException);
 
             // when
-            Action retrievePropertiesAction = 
+            Action retrievePropertiesAction =
                 () => this.propertyOrchestrationService.RetrieveProperties(somePropertyModel);
 
             PropertyOrchestrationDependencyException actualPropertyOrchestrationDependencyException =
