@@ -24,7 +24,7 @@ namespace Standard.Reflection.Services.Orchestrations.Properties
         public PropertyModel RetrieveProperties(PropertyModel propertyModel) =>
         TryCatch(() =>
         {
-            ValidatePropertyModelIsNotNull(propertyModel);
+            ValidatePropertyModel(propertyModel);
 
             Type type = typeService.RetrieveType(propertyModel.Object);
             PropertyInfo[] properties = propertyService.RetrieveProperties(type);

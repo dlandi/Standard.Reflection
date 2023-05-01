@@ -24,6 +24,13 @@ namespace Standard.Reflection.Services.Orchestrations.Properties
 
                 throw propertyOrchestrationDependencyValidationException;
             }
+            catch (NullObjectException nullObjectException)
+            {
+                var propertyOrchestrationDependencyValidationException =
+                    new PropertyOrchestrationDependencyValidationException(nullObjectException);
+
+                throw propertyOrchestrationDependencyValidationException;
+            }
         }
     }
 }
