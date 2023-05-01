@@ -30,24 +30,18 @@ namespace Standard.Reflection.Unit.Tests.Services.Orchestrations.Properties
             var expectedPropertyOrchestrationDependencyValidationException =
                 new PropertyOrchestrationDependencyValidationException(nullPropertyModelException);
 
-            this.typeServiceMock.Setup(service =>
-                service.RetrieveType(It.IsAny<PropertyModel>()))
-                    .Returns(someType);
-
             // when
             Action retrievePropertiesAction = () => this.propertyOrchestrationService.RetrieveProperties(inputPropertyModel);
 
-
             PropertyOrchestrationDependencyValidationException actualPropertyOrchestrationDependencyValidationException =
                 Assert.Throws<PropertyOrchestrationDependencyValidationException>(retrievePropertiesAction);
-
 
             // then
             actualPropertyOrchestrationDependencyValidationException.Should().BeEquivalentTo(expectedPropertyOrchestrationDependencyValidationException);
 
             this.typeServiceMock.Verify(service =>
                 service.RetrieveType(It.IsAny<PropertyModel>()),
-                    Times.Once());
+                    Times.Never());
 
             this.propertyServiceMock.Verify(service =>
                 service.RetrieveProperties(someType),

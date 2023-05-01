@@ -10,7 +10,7 @@ using Standard.Reflection.Services.Foundations.Types;
 
 namespace Standard.Reflection.Services.Orchestrations.Properties
 {
-    internal class PropertyOrchestrationService : IPropertyOrchestrationService
+    internal partial class PropertyOrchestrationService : IPropertyOrchestrationService
     {
         private readonly ITypeService typeService;
         private readonly IPropertyService propertyService;
@@ -21,13 +21,16 @@ namespace Standard.Reflection.Services.Orchestrations.Properties
             this.propertyService = propertyService;
         }
 
-        public PropertyModel RetrieveProperties(PropertyModel propertyModel)
+        public PropertyModel RetrieveProperties(PropertyModel propertyModel) =>
+        TryCatch(() =>
         {
+            ValidatePropertyModelIsNotNull(propertyModel);
+
             Type type = typeService.RetrieveType(propertyModel.Object);
             PropertyInfo[] properties = propertyService.RetrieveProperties(type);
             propertyModel.Properties = properties;
 
             return propertyModel;
-        }
+        });
     }
 }
