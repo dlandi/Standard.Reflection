@@ -20,7 +20,13 @@ namespace Standard.Reflection.Services.Orchestrations.Properties
             this.propertyService = propertyService;
         }
 
-        public PropertyInfo[] RetrieveProperties(object @object) =>
-            throw new NotImplementedException();
+        public PropertyInfo[] RetrieveProperties(object @object)
+        {
+            Type type = typeService.RetrieveType(@object);
+
+            PropertyInfo[] properties = propertyService.RetrieveProperties(type);
+
+            return properties;
+        }
     }
 }
